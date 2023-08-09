@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  simple_db:
+    image: mysql:8
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=pW@!rhNBVk^z
+      - MYSQL_DATABASE=simple
+      - MYSQL_MAX_ALLOWED_PACKET=1024M
+      - MYSQL_INNODB_BUFFER_POOL_SIZE=1G
+      - MYSQL_INNODB_LOG_FILE_SIZE=256M
+      - MYSQL_INNODB_LOG_BUFFER_SIZE=256M
+    volumes:
+      - ./db-data:/var/lib/mysql
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci']
+    ports:
+      - 3306:3306
+  simple_backend:
+    privileged: true
+    restart: always
+    environment:
+      - PORT=3333
+    build: .
+    command: >
+      sh -c "npm install && ./wait-for-db.sh simple_db node ace migration:run && yarn dev"
+    ports:
+      - '3333:3333'
+    volumes:
+      - ./:/server
+    depends_on:
+      - simple_db
