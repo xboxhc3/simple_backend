@@ -29,7 +29,10 @@
       "@adonisjs/core",
       "@adonisjs/repl",
       "@japa/preset-adonis/build/adonis-typings",
-      "@adonisjs/lucid"
+      "@adonisjs/lucid",
+      "@lu7766lu7766/adonis-class-validator",
+      "@adonisjs/ally",
+      "@adonisjs/auth"
     ]
   }
 }
