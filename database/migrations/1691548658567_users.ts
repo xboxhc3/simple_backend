@@ -7,11 +7,10 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
       table.string('email').unique().notNullable().comment('username')
-      table.string('password').notNullable()
+      table.string('password').nullable()
       table.string('name')
-      table.timestamp('verifiedAt', { useTz: true }).notNullable()
+      table.timestamp('verifiedAt', { useTz: true }).nullable()
       table.string('googleId')
-      table.string('facebookId')
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
