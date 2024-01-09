@@ -12,4 +12,4 @@ Route.group(() => {
   .namespace('App/Controllers/Http')
 
 require('./oauth')
-
+require('./youtube')

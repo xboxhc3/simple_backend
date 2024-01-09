@@ -60,6 +60,7 @@
     "nodemailer": "^6.9.4",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "ytubes": "^1.3.1"
   }
 }
